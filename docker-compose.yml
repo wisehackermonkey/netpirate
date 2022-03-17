@@ -1,0 +1,6 @@
+version: '2'
+services:
+  pirateradio:
+    build: ./pirateradio
+    expose:
+      - "80"

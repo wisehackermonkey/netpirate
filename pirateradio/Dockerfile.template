@@ -1,0 +1,11 @@
+FROM balenalib/rpi-raspbian:latest
+
+WORKDIR /usr/src/app
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y git
+RUN git clone https://github.com/F5OEO/rpitx
+
+COPY . ./
+
+CMD ["/bin/sh", "./rpitx/install.sh"]
