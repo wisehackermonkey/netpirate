@@ -4,3 +4,4 @@ services:
     build: ./pirateradio
     expose:
       - "80"
+    privileged: true

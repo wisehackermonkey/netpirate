@@ -4,9 +4,10 @@ WORKDIR /usr/src/app
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y git cmake build-essential libgtk-3-dev libsdl2-dev zlib1g-dev liblua5.3-dev libgif-dev libsndfile1-dev  libsoxr-dev
+COPY . ./
 RUN git clone https://github.com/Miegl/PiFmAdv.git
 WORKDIR /usr/src/app/PiFmAdv/src
 RUN make clean
 RUN make
 COPY . ./
-CMD ["/bin/sh", "./pi_fm_adv"]
+# CMD ["/bin/sh", "./pi_fm_adv"]
