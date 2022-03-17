@@ -3,9 +3,10 @@ FROM balenalib/rpi-raspbian:latest
 WORKDIR /usr/src/app
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y git
-RUN git clone https://github.com/F5OEO/rpitx
+    apt-get install -y git cmake build-essential libgtk-3-dev libsdl2-dev zlib1g-dev liblua5.3-dev libgif-dev libsndfile1-dev imagemagick libfftw3-dev rtl-sdr buffer
+RUN git clone https://github.com/wisehackermonkey/rpitx
 
 COPY . ./
-
-CMD ["/bin/sh", "./rpitx/install.sh"]
+WORKDIR /usr/src/app/rpitx
+RUN /bin/sh ./install-docker.sh
+# CMD ["/bin/sh", "./install-docker.sh"]
