@@ -2,6 +2,18 @@ version: '2'
 services:
   pirateradio:
     build: ./pirateradio
+    privileged: true
+    volumes:
+      - shared_pipe:/usr/src/app/PiFmAdv/src/public
+
+  api:
+    build: ./api
     expose:
       - "80"
-    privileged: true
+    volumes:
+      - shared_pipe:/usr/src/app/public
+# used for sharing a filepipe to send audio data between the api server and the fm radio code: "pirateradio"
+# for more info see this stackoverflow post
+# https://stackoverflow.com/questions/44284484/docker-compose-share-named-volume-between-multiple-containers
+volumes:
+  shared_pipe:
