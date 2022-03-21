@@ -8,8 +8,8 @@ services:
 
   api:
     build: ./api
-    expose:
-      - "80"
+    ports:
+      - "80:80"
     volumes:
       - shared_pipe:/usr/src/app/public
 # used for sharing a filepipe to send audio data between the api server and the fm radio code: "pirateradio"
