@@ -1,13 +1,22 @@
-FROM balenalib/rpi-raspbian:latest
-
+# [Balena base images - Balena Documentation](https://www.balena.io/docs/reference/base-images/base-images/)
+# FROM balenalib/rpi-raspbian:latest
+FROM balenalib/%%BALENA_MACHINE_NAME%%-python:3-stretch-run
 WORKDIR /usr/src/app
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y git cmake build-essential libgtk-3-dev libsdl2-dev zlib1g-dev liblua5.3-dev libgif-dev libsndfile1-dev  libsoxr-dev
+    apt-get install -y git make gcc  build-essential libgtk-3-dev libsdl2-dev zlib1g-dev liblua5.3-dev libgif-dev libsndfile1-dev  libsoxr-dev entr libsndfile-dev
 COPY . ./
+RUN git clone  https://github.com/Kerrick/cwwav.git
+WORKDIR /usr/src/app/cwwav
+RUN make
+RUN make install
+
+WORKDIR /usr/src/app
 RUN git clone https://github.com/Miegl/PiFmAdv.git
 WORKDIR /usr/src/app/PiFmAdv/src
 RUN make clean
 RUN make
 COPY . ./
+CMD ["/bin/sh", "-c", "echo", "'pirateradio'"]
 # CMD ["/bin/sh", "./pi_fm_adv"]
+# echo "hello world" | /usr/src/app/cwwav/cwwav -f 700 -w 20 -o hello_world.wav

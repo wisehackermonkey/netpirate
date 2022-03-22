@@ -40,8 +40,22 @@
 cd ~
 git clone https://github.com/wisehackermonkey/netpirate.git
 cd netpirate
+
+balena login
+balena push pirateship
+
+balena ssh pirateship pirateradio
+
+/bin/sh ./pi_fm_adv --ps RASP-PI
+--wait specifies whether PiFmAdv should wait for the the audio pipe or terminate as soon as there is no audio. It's set to 1 by default.
 ```
 
+
+# hack to get text from api to file as characters, to morse code to wave audio file
+```bash
+echo "audio.wav" | entr -c ./pi_fm_adv --ps RASP-PI --wait 1 --audio ./audio.wav
+echo "audio.wav" | entr -c cwwav -f 700 -w 20 -o hello_world.wav
+```
 
 
 
@@ -89,9 +103,9 @@ cd netpirate
  
 ---
 # Links
-### 
-### 
-### 
+### [python-restx/flask-restx: Fork of Flask-RESTPlus: Fully featured framework for fast, easy and documented API development with Flask](https://github.com/python-restx/flask-restx) [Quick start — Flask-RESTX 0.5.2.dev documentation](https://flask-restx.readthedocs.io/en/latest/quickstart.html#a-minimal-api)
+### [balena-io-examples/balena-python-hello-world: A simple Hello World server with Python Flask](https://github.com/balena-io-examples/balena-python-hello-world)
+### [Kerrick/cwwav: Command line tool to generate morse code sound files from text or stdin](https://github.com/Kerrick/cwwav)
 ### 
 ### 
 
