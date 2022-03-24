@@ -11,7 +11,7 @@ services:
     # command:  cwwav -f 700 -w 20 -o hello_world.wav /usr/src/app/PiFmAdv/src/morse_data.txt
     # command:  /bin/sh -c "cwwav -f 400 -w 20 -o /usr/src/app/hello_world.wav /usr/src/app/morse_data.txt &&   ./pi_fm_adv --freq 90.7  --audio /usr/src/app/hello_world.wav"
     # command: /bin/sh -c " find . -name 'morse_data.txt' |  entr -r cwwav -f 400 -w 20 -o /usr/src/app/PiFmAdv/src/public/hello_world.wav /usr/src/app/PiFmAdv/src/public/morse_data.txt &  sudo /usr/src/app/PiFmAdv/src/pi_fm_adv --freq 90.5 --mpx 30 --wait 0 --audio /usr/src/app/PiFmAdv/src/public/hello_world.wav"
-    command: /bin/sh -c "./start.sh"
+    command: /bin/sh -c "/usr/src/app/start.sh"
 
     # command: /bin/sh -c " find . -name 'morse_data.txt' |  entr -r cwwav -f 400 -w 20 -o /usr/src/app/PiFmAdv/src/public/hello_world.wav /usr/src/app/PiFmAdv/src/public/morse_data.txt &  sudo /usr/src/app/PiFmAdv/src/pi_fm_adv --freq $RADIO_STATION_FREQ --audio /usr/src/app/PiFmAdv/src/public/hello_world.wav"
 
