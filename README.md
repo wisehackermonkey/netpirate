@@ -55,6 +55,18 @@ balena ssh pirateship pirateradio
 ```bash
 echo "audio.wav" | entr -c ./pi_fm_adv --ps RASP-PI --wait 1 --audio ./audio.wav
 echo "audio.wav" | entr -c cwwav -f 700 -w 20 -o hello_world.wav
+echo "sos sos" > morse_data.txt
+find . -name "morse_data.txt" | entr -r cwwav -f 700 -w 20 -o hello_world.wav morse_data.txt
+
+find . -name "morse_data.txt" | entr -r echo "file changed"
+echo "morse_data.txt" | entr -r echo "file changed"
+echo "morse_data.txt" | entr -r cwwav -f 700 -w 20 -o hello_world.wav && echo "file changed"
+echo "morse_data.txt" | entr -r | cwwav -f 700 -w 20 -o hello_world.wav && echo "file changed"
+echo "morse_data.txt" | entr -r -s "cwwav -f 700 -w 20 -o hello_world.wav ./morse_data.txt"
+
+echo "" > /usr/src/app/PiFmAdv/src/public/morse_data.txt && echo "morse_data.txt" | entr -r -s "cwwav -f 700 -w 20 -o hello_world.wav ./morse_data.txt"
+
+./pi_fm_adv --freq 90.7 --ps RASP-PI --wait 1 --audio ./hello_world.wav 
 ```
 
 
@@ -106,7 +118,7 @@ echo "audio.wav" | entr -c cwwav -f 700 -w 20 -o hello_world.wav
 ### [python-restx/flask-restx: Fork of Flask-RESTPlus: Fully featured framework for fast, easy and documented API development with Flask](https://github.com/python-restx/flask-restx) [Quick start — Flask-RESTX 0.5.2.dev documentation](https://flask-restx.readthedocs.io/en/latest/quickstart.html#a-minimal-api)
 ### [balena-io-examples/balena-python-hello-world: A simple Hello World server with Python Flask](https://github.com/balena-io-examples/balena-python-hello-world)
 ### [Kerrick/cwwav: Command line tool to generate morse code sound files from text or stdin](https://github.com/Kerrick/cwwav)
-### 
+###  [miegl/PiFmAdv: Advanced Raspberry Pi FM transmitter with RDS encoding](https://github.com/miegl/PiFmAdv)
 ### 
 
 

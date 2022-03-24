@@ -17,6 +17,7 @@ WORKDIR /usr/src/app/PiFmAdv/src
 RUN make clean
 RUN make
 COPY . ./
-CMD ["/bin/sh", "-c", "echo", "'pirateradio'"]
+# RUN echo "" > /usr/src/app/PiFmAdv/src/public/morse_data.txt
+# CMD ["/bin/sh", "-c", "echo", "'pirateradio'"]
 # CMD ["/bin/sh", "./pi_fm_adv"]
 # echo "hello world" | /usr/src/app/cwwav/cwwav -f 700 -w 20 -o hello_world.wav
