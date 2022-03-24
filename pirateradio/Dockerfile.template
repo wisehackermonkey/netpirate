@@ -18,4 +18,4 @@ RUN make clean
 RUN make
 COPY . ./
 WORKDIR /usr/src/app/PiFmAdv/src/public
-CMD ["/bin/sh","./start.sh"]
+CMD ["/bin/bash","./start.sh"]
