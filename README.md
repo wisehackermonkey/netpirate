@@ -68,6 +68,17 @@ echo "morse_data.txt" | entr -r -s "cwwav -f 700 -w 20 -o hello_world.wav ./mors
 echo "" > /usr/src/app/PiFmAdv/src/public/morse_data.txt && echo "morse_data.txt" | entr -r -s "cwwav -f 700 -w 20 -o hello_world.wav ./morse_data.txt"
 
 ./pi_fm_adv --freq 90.7 --ps RASP-PI --wait 1 --audio ./hello_world.wav 
+echo "oran was here" > /usr/src/app/public/morse_data.txt
+echo "oran was not here" > /usr/src/app/public/morse_data.txt
+
+/bin/sh -c " entr -r cwwav -f 400 -w 20 -o /usr/src/app/hello_world.wav /usr/src/app/PiFmAdv/src/public/morse_data.txt &&   ./pi_fm_adv --freq 90.7  --audio /usr/src/app/hello_world.wav"
+/bin/sh -c " echo morse_data.txt | entr -r echo 'file changed'"
+/bin/sh -c " find . -name 'morse_data.txt' |  entr -r echo 'file changed'"
+/bin/sh -c " find . -name 'morse_data.txt' |  entr -r cwwav -f 400 -w 20 -o /usr/src/app/hello_world.wav /usr/src/app/PiFmAdv/src/public/morse_data.txt &&    /usr/src/app/PiFmAdv/src/pi_fm_adv --freq 90.7  --audio /usr/src/app/hello_world.wav"
+/bin/sh -c "  /usr/src/app/PiFmAdv/src/pi_fm_adv --freq 90.7  --audio /usr/src/app/hello_world.wav"
+/bin/sh -c " find . -name 'morse_data.txt' |  entr -r cwwav -f 400 -w 20 -o /usr/src/app/PiFmAdv/src/public/hello_world.wav /usr/src/app/PiFmAdv/src/public/morse_data.txt"
+
+/bin/sh -c " find . -name 'morse_data.txt' |  entr -r cwwav -f 400 -w 20 -o /usr/src/app/PiFmAdv/src/public/hello_world.wav /usr/src/app/PiFmAdv/src/public/morse_data.txt &   /usr/src/app/PiFmAdv/src/pi_fm_adv --freq 90.7  --audio /usr/src/app/PiFmAdv/src/public/hello_world.wav"
 ```
 
 
