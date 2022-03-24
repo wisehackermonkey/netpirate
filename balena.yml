@@ -1,0 +1,28 @@
+
+name: netpirate
+type: sw.application
+description: >-
+  Send morse code over fm radio using the a raspberry pi and 1 wire on pin 4 .
+assets:
+  repository:
+    type: blob.asset
+    data:
+      url: 'https://github.com/balenalabs/balena-sound'
+  logo:
+    type: blob.asset
+    data:
+      url: >-
+        https://raw.githubusercontent.com/wisehackermonkey/netpirate/master/logo.png
+data:
+  applicationEnvironmentVariables:
+    - SOUND_VOLUME: 75
+    - AUDIO_OUTPUT: AUTO
+  defaultDeviceType: raspberry-pi
+  supportedDeviceTypes:
+    - raspberry-pi
+    - raspberry-pi2
+    - raspberrypi3
+    - raspberrypi4-64
+    - fincm3
+    - intel-nuc
+version: 3.5.2

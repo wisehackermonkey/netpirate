@@ -4,10 +4,13 @@ from flask_restx import Resource, Api
 app = Flask(__name__)
 api = Api(app)
 
-@api.route('/v1/morse')
+@api.route('/v1/morse/<string:message>')
 class HelloWorld(Resource):
-    def put(self):
-        return {'sent': 'world'}
+    def get(self,message):
+        print(message)
+        with open('./src/public/morse_data.txt', 'w') as f:
+            f.write(message)
+        return {'sent': 'world', 'received': message}
 
 if __name__ == '__main__':
     print("NetPirate Api Server has started")

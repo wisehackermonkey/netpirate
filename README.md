@@ -82,7 +82,9 @@ echo "oran was not here" > /usr/src/app/public/morse_data.txt
 ```
 
 
-
+# adding env for setting radio station frequency
+```bash
+balena envs --fleet pirateship
 
 
 
@@ -131,7 +133,8 @@ echo "oran was not here" > /usr/src/app/public/morse_data.txt
 ### [balena-io-examples/balena-python-hello-world: A simple Hello World server with Python Flask](https://github.com/balena-io-examples/balena-python-hello-world)
 ### [Kerrick/cwwav: Command line tool to generate morse code sound files from text or stdin](https://github.com/Kerrick/cwwav)
 ###  [miegl/PiFmAdv: Advanced Raspberry Pi FM transmitter with RDS encoding](https://github.com/miegl/PiFmAdv)
-### 
+### [entr(1)](http://eradman.com/entrproject/)
+### [miegl/PiFmAdv: Advanced Raspberry Pi FM transmitter with RDS encoding](https://github.com/miegl/PiFmAdv)
 
 
 
