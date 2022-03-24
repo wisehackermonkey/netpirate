@@ -29,7 +29,8 @@
 
 
 
-
+# the bellow docs are not for reference just a my notes while im creating the project.
+# I will add a the install guide later. sorry! 
 
 
 
