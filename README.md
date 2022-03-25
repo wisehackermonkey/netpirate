@@ -139,7 +139,7 @@ balena envs --fleet pirateship
 ### [entr(1)](http://eradman.com/entrproject/)
 ### [miegl/PiFmAdv: Advanced Raspberry Pi FM transmitter with RDS encoding](https://github.com/miegl/PiFmAdv)
 ### [Single-board computers - Balena Documentation](https://www.balena.io/docs/reference/hardware/devices/)
-
+### [Morse Code Adaptive Audio Decoder | Morse Code World](https://morsecode.world/international/decoder/audio-decoder-adaptive.html)
 
 
 
