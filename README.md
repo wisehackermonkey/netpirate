@@ -90,13 +90,14 @@ sudo apt-get install libmp3lame-dev
 make clean 
 make LAME=1
 ```
+### didnt work. sad face emoji
 
-
-# adding env for setting radio station frequency
+# adding env for setting radio station frequency 
 ```bash
 balena envs --fleet pirateship
 
-
+```
+### nevermind i just added it to the docker compose file
 
 
 
@@ -126,7 +127,9 @@ balena envs --fleet pirateship
 balena scan
 balena push 1c7d38a.local
 balena ssh 1c7d38a.local 
- 
+balena ssh 1c7d38a.local fm_radio
+balena build 1c7d38a.local  --emulated
+balena build --arch armv7hf --deviceType fincm3 --emulated
 ```
 
 

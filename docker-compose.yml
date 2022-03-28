@@ -1,5 +1,9 @@
 version: '2'
 services:
+  morse_code:
+    build: ./morse_code
+    volumes:
+      - shared_pipe:/app/PiFmAdv/src/public
   fm_radio:
     build: ./fm_radio
     privileged: true
