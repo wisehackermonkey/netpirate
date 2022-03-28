@@ -9,7 +9,7 @@ services:
     privileged: true
     # depends_on:
     #   - shared_folder
-    restart: "no"
+    # restart: "no"
     volumes:
       - shared_folder:/public
     # command:  cwwav -f 700 -w 20 -o hello_world.wav /app/PiFmAdv/src/morse_data.txt
