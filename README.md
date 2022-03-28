@@ -84,6 +84,13 @@ echo "oran was not here" > /usr/src/app/public/morse_data.txt
 /bin/sh -c " find . -name 'morse_data.txt' |  entr -r cwwav -f 400 -w 20 -o /usr/src/app/PiFmAdv/src/public/hello_world.wav /usr/src/app/PiFmAdv/src/public/morse_data.txt &   /usr/src/app/PiFmAdv/src/pi_fm_adv --freq 90.7  --audio /usr/src/app/PiFmAdv/src/public/hello_world.wav"
 ```
 
+# testing mp3 file pipe support
+```bash
+sudo apt-get install libmp3lame-dev
+make clean 
+make LAME=1
+```
+
 
 # adding env for setting radio station frequency
 ```bash
@@ -116,6 +123,10 @@ balena envs --fleet pirateship
 # Development
 ### 
 ```bash
+balena scan
+balena push 1c7d38a.local
+balena ssh 1c7d38a.local 
+ 
 ```
 
 
