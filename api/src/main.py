@@ -8,7 +8,7 @@ api = Api(app)
 class HelloWorld(Resource):
     def get(self,message):
         print(message)
-        with open('./src/public/morse_data.txt', 'w') as f:
+        with open('/public/morse_data.txt', 'w') as f:
             f.write(message)
         return {'sent': 'world', 'received': message}
 

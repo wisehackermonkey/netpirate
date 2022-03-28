@@ -1,8 +1,9 @@
  
 FROM wisehackermonkey/netpirate_base:latest
  
-WORKDIR /usr/src/app
+WORKDIR /app
 COPY . ./
-WORKDIR /usr/src/app
-RUN ["chmod", "+x", "/usr/src/app/start.sh"]
-CMD ["/bin/bash","/usr/src/app/start.sh"]
+WORKDIR /public
+
+RUN ["chmod", "+x", "/app/start.sh"]
+CMD ["/bin/bash","/app/start.sh"]

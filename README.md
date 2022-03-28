@@ -133,6 +133,8 @@ balena build --arch armv7hf --deviceType fincm3 --emulated
 
 
 curl https://www.kozco.com/tech/piano2.wav > hello_world.wav
+
+entr: exec cwwav -f  -w  -o /public/hello_world.wav /public/morse_data.txt: No such file or directory
 ```
 
 
