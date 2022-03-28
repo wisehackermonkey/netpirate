@@ -130,6 +130,9 @@ balena ssh 1c7d38a.local
 balena ssh 1c7d38a.local fm_radio
 balena build 1c7d38a.local  --emulated
 balena build --arch armv7hf --deviceType fincm3 --emulated
+
+
+curl https://www.kozco.com/tech/piano2.wav > hello_world.wav
 ```
 
 
