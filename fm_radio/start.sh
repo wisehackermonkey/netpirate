@@ -1,11 +1,14 @@
 
 #!/bin/sh
 # pkill -l pi_fm_adv
-while true; do 
-    ps ax 
-    # ps ax |  awk '/src\/pi_fm_adv/ { print $1 }' 
-    # ps ax |  awk '/src\/pi_fm_adv/ { print $1 }' | pkill -
-    # exec find . -name 'hello_world.wav' |  entr -r /usr/src/app/PiFmAdv/src/pi_fm_adv --freq $RADIO_STATION_FREQ --mpx 30 --gpio $GPIO_PIN --wait 1 --audio /public/hello_world.wav
-    /app/fm_transmitter/fm_transmitter  -f $RADIO_STATION_FREQ  /public/hello_world.wav
-    sleep 1
+# while true; do 
+#     ps ax 
+#     # ps ax |  awk '/src\/pi_fm_adv/ { print $1 }' 
+#     # ps ax |  awk '/src\/pi_fm_adv/ { print $1 }' | pkill -
+#     # exec find . -name 'hello_world.wav' |  entr -r /usr/src/app/PiFmAdv/src/pi_fm_adv --freq $RADIO_STATION_FREQ --mpx 30 --gpio $GPIO_PIN --wait 1 --audio /public/hello_world.wav
+#     /app/fm_transmitter/fm_transmitter  -f $RADIO_STATION_FREQ  /public/hello_world.wav
+#     sleep 1
+# done
+while :; do \
+        lame --quiet --decode /public/hello_world.wav - | ( set -x ; ./pifm - $FREQUENCY 44100 > /dev/null ) || break; \
 done

@@ -1,15 +1,56 @@
  
-FROM wisehackermonkey/netpirate_base:latest
+# # [Base Image List - Balena Documentation](https://www.balena.io/docs/reference/base-images/base-images-ref/)
+# FROM balenalib/raspberrypi3-debian:latest
 
-WORKDIR /app
+# WORKDIR /app
+# RUN apt-get update && \
+#     apt-get install git make build-essential libraspberrypi-dev raspberrypi-kernel-headers
 
-RUN git clone https://github.com/markondej/fm_transmitter
-WORKDIR /app/fm_transmitter
-RUN make
+# RUN git clone https://github.com/markondej/fm_transmitter
+# WORKDIR /app/fm_transmitter
+# RUN make
 
-WORKDIR /app
-COPY . ./
-WORKDIR /public
+# WORKDIR /app
+# COPY . ./
+# WORKDIR /public
 
-RUN ["chmod", "+x", "/app/start.sh"]
-CMD ["/bin/bash","/app/start.sh"]
+# RUN ["chmod", "+x", "/app/start.sh"]
+# CMD ["/bin/bash","/app/start.sh"]
+
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian:latest-build AS build
+
+RUN install_packages lame python3-pip rsync
+
+WORKDIR /usr/src/app
+
+RUN curl -o rickroll.mp3 "https://www.soundboard.com/handler/DownLoadTrack.ashx?cliptitle=Never+Gonna+Give+You+Up-+Original&filename=mz/Mzg1ODMxNTIzMzg1ODM3_JzthsfvUY24.MP3"
+
+RUN git clone https://github.com/Make-Magazine/PirateRadio.git && \
+    g++ -O3 -static -o pifm PirateRadio/pifm.c && \
+    strip -s pifm && \
+    chmod a+x pifm
+
+RUN pip install git+https://github.com/larsks/dockerize
+
+RUN mkdir output
+
+RUN dockerize --verbose \
+    --output-dir /usr/src/app/output \
+    --no-build \
+    /bin/sh \
+    $(which lame) \
+    /usr/src/app/pifm \
+    /usr/src/app/rickroll.mp3
+
+FROM scratch
+
+ENV FREQUENCY=${FREQUENCY:-106.9}
+
+COPY --from=build /usr/src/app/output/ .
+
+WORKDIR /usr/src/app
+
+CMD while :; do \
+        lame --quiet --decode rickroll.mp3 - | ( set -x ; ./pifm - $FREQUENCY 44100 > /dev/null ) || break; \
+    done
+# CMD ["/bin/bash","/app/start.sh"]

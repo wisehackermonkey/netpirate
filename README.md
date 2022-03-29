@@ -139,15 +139,65 @@ entr: exec cwwav -f  -w  -o /public/hello_world.wav /public/morse_data.txt: No s
 
 
 
+# options for fm transmitter
+[Turning the Raspberry Pi Into an FM Transmitter - Imperial College Robotics Society](http://www.icrobotics.co.uk/wiki/index.php/Turning_the_Raspberry_Pi_Into_an_FM_Transmitter)
+```bash
+curl http://omattos.com/pifm.tar.gz | tar xz -C /app/
+cd /app/pifm
+cp /app/synthbit.wav /app/pifm/synthbit.wav
+./pifm synthbit.wav 103.3 22050 stereo
+```
 
 
+[Mikael-Jakhelln/PiFMPlay: Its a terminal music player addon, for use with pifm(FM-Transmitter) on a raspberry pi mini computer.](https://github.com/Mikael-Jakhelln/PiFMPlay)
+```bash
+# apt-get install ffmpeg sox libsox-fmt-all 
+install_packages ffmpeg sox libsox-fmt-all 
+git clone https://github.com/Mikael-Jakhelln/PiFMPlay.git
+cd PiFMPlay/pifmplay
+chmod +x pifmplay
+chmod +x pifm
+/bin/sh pifmplay . 91.3
+```
 
+[dawiddyd/web-rpi-fm: Web interface for Raspberry Pi fm transmitter. Made using Vue.js and Python.](https://github.com/dawiddyd/web-rpi-fm)
 
+[balenalib/raspberrypi3-python Tags | Docker Hub](https://hub.docker.com/r/balenalib/raspberrypi3-python/tags) [base-images/Dockerfile at master · balena-io-library/base-images](https://github.com/balena-io-library/base-images/blob/master/balena-base-images/python/raspberrypi3/debian/bullseye/3.9.7/run/Dockerfile)
+```bash
+FROM balenalib/raspberrypi3-python:latest
+# apt-get update
+# apt-get install  sox libsox-fmt-all libsox-fmt-mp3
+install_packages sox libsox-fmt-all libsox-fmt-mp3
+pip install flask flask_uploads flask_cors tinytag
+git clone https://github.com/dawiddyd/web-rpi-fm.git
+cd web-rpi-fm
+chmod 777 pifmrds
+cd static/audio
+chmod 777 pifmrds
+python server.py
+<IP>:9000
+```
 
+[cedced19/pifm-browser: A Node.js software to play music on a FM radio.](https://github.com/cedced19/pifm-browser)
+```bash
+FROM balenalib/raspberrypi3-node:latest
 
+git clone --depth=1 --branch=master https://github.com/cedced19/pifm-browser
+cd ./pifm-browser/dist/
+npm install --production
+chmod 777 lib/pifm
+node pifm-browser.js
+```
 
-
-
+[sbrki/PiRadio: PiRadio is a small & lightweight python radio that is based on PiFM](https://github.com/sbrki/PiRadio)
+```bash
+FROM balenalib/raspberrypi3-python:latest
+install_packages mpg123
+pip3 install configparser
+git clone https://github.com/sbrki/PiRadio.git
+cd /app/PiRadio/PiRadio
+python3 PiRadio.py
+```
  
 ---
 # Links
