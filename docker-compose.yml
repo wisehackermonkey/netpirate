@@ -3,7 +3,10 @@ services:
   morse_code:
     build: ./morse_code
     volumes:
-      - shared_folder:/app/public
+      - shared_folder:/usr/src/app/public
+    environment:
+      - MORSE_CODE_TONE_FREQ=400
+      - MORSE_CODE_SPEED=20
   fm_radio:
     build: ./fm_radio
     privileged: true
@@ -24,9 +27,6 @@ services:
     # command: ping -c 10000 www.google.com
     environment:
       - RADIO_STATION_FREQ=90.7
-      - API_PORT=80
-      - MORSE_CODE_TONE_FREQ=400
-      - MORSE_CODE_SPEED=20
       - GPIO_PIN=4
       # - ANTENNA_PIN: 4
   api:
@@ -35,6 +35,8 @@ services:
       - "80:80"
     volumes:
       - shared_folder:/app/src/public
+    environment:
+      - API_PORT=80
 # used for sharing a filepipe to send audio data between the api server and the fm radio code: "pirateradio"
 # for more info see this stackoverflow post
 # https://stackoverflow.com/questions/44284484/docker-compose-share-named-volume-between-multiple-containers
