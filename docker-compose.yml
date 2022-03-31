@@ -14,7 +14,7 @@ services:
     #   - shared_folder
     restart: "no"
     volumes:
-      - shared_folder:/app/PiFmAdv/src/public
+      - shared_folder:/usr/src/app/PiFmAdv/src/public
     # command:  cwwav -f 700 -w 20 -o hello_world.wav /app/PiFmAdv/src/morse_data.txt
     # command:  /bin/sh -c "cwwav -f 400 -w 20 -o /app/hello_world.wav /app/morse_data.txt &&   ./pi_fm_adv --freq 90.7  --audio /app/hello_world.wav"
     # command: /bin/sh -c " find . -name 'morse_data.txt' |  entr -r cwwav -f 400 -w 20 -o /app/PiFmAdv/src/public/hello_world.wav /app/PiFmAdv/src/public/morse_data.txt &  sudo /app/PiFmAdv/src/pi_fm_adv --freq 90.5 --mpx 30 --wait 0 --audio /app/PiFmAdv/src/public/hello_world.wav"
@@ -34,7 +34,7 @@ services:
     ports:
       - "80:80"
     volumes:
-      - shared_folder:/app/src/public
+      - shared_folder:/usr/src/app/src/public
     environment:
       - API_PORT=80
 # used for sharing a filepipe to send audio data between the api server and the fm radio code: "pirateradio"
